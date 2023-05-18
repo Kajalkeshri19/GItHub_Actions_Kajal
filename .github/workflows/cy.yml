@@ -1,0 +1,57 @@
+name: Test
+
+on:
+  workflow_dispatch:
+   
+        
+  push:
+    branches:
+      - feature/Assignment2
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+
+      - name: Install newman
+        run: |
+          npm install -g newman-reporter-htmlextra
+          
+      - name: Run Collection
+        run: | 
+          newman run CRUD.postman_collection.json --reporters cli,htmlextra --reporter-htmlextra-export report.html
+          
+      - name: Archeive Test REport
+        uses: actions/upload-artifact@v3
+        with:
+           name: Report
+           path: report.html
+           retention-days: 30
+           
+   
+  test2:
+     runs-on: ubuntu-latest
+
+     steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+
+      - name: Run Code
+        run: |
+          mvn test
+          
+          
+      - name: Archeive Test Report
+        uses: actions/upload-artifact@v3
+        with:
+           name: Report
+           path: target/surefire-reports/emailable-report.html
+           retention-days: 30
+        
+         
+          
