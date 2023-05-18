@@ -9,7 +9,7 @@ on:
       - feature/Assignment2
 
 jobs:
-  test:
+  Test1:
     runs-on: ubuntu-latest
 
     steps:
@@ -33,7 +33,7 @@ jobs:
            retention-days: 30
            
    
-  test2:
+  Test2:
      runs-on: ubuntu-latest
 
      steps:
@@ -51,7 +51,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
            name: Report
-           path: BroeknLinks/target/surefire-reports/emailable-report.html
+           path: BrokenLinks/target/surefire-reports/emailable-report.html
            retention-days: 30
         
          
