@@ -50,7 +50,7 @@ jobs:
       - name: Archeive Test Report
         uses: actions/upload-artifact@v3
         with:
-           name: Report
+           name: Result
            path: BrokenLinks/target/surefire-reports/emailable-report.html
            retention-days: 30
         
