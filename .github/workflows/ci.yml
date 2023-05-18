@@ -1,0 +1,29 @@
+name: Test
+
+on:
+  workflow_dispatch:
+   
+        
+  push:
+    branches:
+      - feature/Assignment1
+
+jobs:
+  test_product:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+
+      - name: Install newman
+        run: |
+          npm install -g newman-reporter-htmlextra
+          
+      - name: Run Collection
+        run: | 
+          newman run CRUD.postman_collection.json --reporter-htmlextra-export report.html
+          
+          
+          
