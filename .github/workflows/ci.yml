@@ -9,7 +9,7 @@ on:
       - feature/Assignment1
 
 jobs:
-  test_product:
+  test:
     runs-on: ubuntu-latest
 
     steps:
