@@ -43,6 +43,7 @@ jobs:
 
       - name: Run Code
         run: |
+          cd BrokenLinks
           mvn test
           
           
