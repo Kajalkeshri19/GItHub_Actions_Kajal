@@ -4,16 +4,16 @@ Creating a CI/CD pipeline that will run postman collection using Newman, via Git
 ## Steps:
 Creating a yml file:
   
-     1. ** Firstly Installing Newman ** 
+      ** Firstly Installing Newman ** 
         npm install -g newman-reporter-htmlextra
 
-     2. ** Running Collection **
+      ** Running Collection **
         newman run "collection name" --reporters cli,,htmlextra --reporter-htmlextra-export report.html
       
-     3. ** Then storing the html report as artifact **
+      ** Then storing the html report as artifact **
         actiond/upload-artifact@v3
      
-     4. ** Atlast setting the retention period (which is optinal) **
+      ** Atlast setting the retention period (which is optinal) **
         name: Report
         path: report.html
         retention-days: 30
