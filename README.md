@@ -5,7 +5,7 @@ Creating a CI/CD pipeline that will run postman collection using Newman, via Git
 Creating a yml file:
   
      1. Firstly Installing Newman
-     > npm install -g newman-reporter-htmlextra
+       > npm install -g newman-reporter-htmlextra
 
      2. Running Collection
      > newman run "collection name" --reporters cli,,htmlextra --reporter-htmlextra-export report.html
