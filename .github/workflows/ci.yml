@@ -23,14 +23,14 @@ jobs:
           
       - name: Run Collection
         run: | 
-          newman run CRUD.postman_collection.json --reporter-htmlextra-export report.html
+          newman run CRUD.postman_collection.json --reporters cli,htmlextra --reporter-htmlextra-export report.html
           
       - name: Archeive Test REport
         uses: actions/upload-artifact@v3
         with:
            name: Report
            path: report.html
-             retention-days:30
+           retention-days: 30
         
          
           
