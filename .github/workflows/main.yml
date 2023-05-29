@@ -16,7 +16,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
         with:
-           ref: feature/Assignment1
+           ref: feature/Assignment2
 
 
       - name: Run Code
