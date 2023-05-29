@@ -1,0 +1,21 @@
+name: SBT
+on:
+  workflow_dispatch:
+   
+        
+  push:
+    branches:
+      - feature/3
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+
+      - name: Run SBT
+        run: |
+          sbt run
