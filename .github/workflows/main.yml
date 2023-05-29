@@ -1,0 +1,73 @@
+name: Run Test sequentially
+
+on:
+  workflow_dispatch:
+   
+        
+  push:
+    branches:
+      - feature/4
+
+jobs:
+  Selenium_test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+           ref: feature/Assignment1
+
+
+      - name: Run Code
+        run: |
+          cd BrokenLinks
+          mvn test
+          
+          
+      - name: Archeive Test Report
+        uses: actions/upload-artifact@v3
+        with:
+           name: Result
+           path: BrokenLinks/target/surefire-reports/emailable-report.html
+           retention-days: 30
+           
+  Postman_Collection:
+    needs: Selenium_test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+           ref: feature/Assignment2
+       
+      - name: Install newman
+        run: |
+          npm install -g newman-reporter-htmlextra
+          
+      - name: Run Collection
+        run: | 
+          newman run CRUD.postman_collection.json --reporters cli,htmlextra --reporter-htmlextra-export report.html
+          
+      - name: Archeive Test REport
+        uses: actions/upload-artifact@v3
+        with:
+           name: Report
+           path: report.html
+           retention-days: 30
+           
+  Sbt_test:
+     needs: Postman_Collection
+     runs-on: ubuntu-latest
+
+     steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Run SBT
+        run: |
+          cd Assignment_3
+          sbt run
+        
+          
