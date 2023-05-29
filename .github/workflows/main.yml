@@ -18,4 +18,5 @@ jobs:
 
       - name: Run SBT
         run: |
+          cd Assignment_3
           sbt run
